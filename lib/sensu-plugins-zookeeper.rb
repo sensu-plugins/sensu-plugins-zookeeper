@@ -1,12 +1,12 @@
 
-require 'sensu-plugins-wordpress/version'
+require 'sensu-plugins-zookeeper/version'
 
 # Load the defaults
 
 #
 # Default class
 #
-module SensuPluginsWordpress
+module SensuPluginsZookeeper
   class << self
   end
 
