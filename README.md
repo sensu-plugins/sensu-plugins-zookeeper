@@ -5,7 +5,7 @@
 [![Code Climate](https://codeclimate.com/github/sensu-plugins/sensu-plugins-zookeeper/badges/gpa.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-zookeeper)
 [![Test Coverage](https://codeclimate.com/github/sensu-plugins/sensu-plugins-zookeeper/badges/coverage.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-zookeeper)
 [![Dependency Status](https://gemnasium.com/sensu-plugins/sensu-plugins-zookeeper.svg)](https://gemnasium.com/sensu-plugins/sensu-plugins-zookeeper)
-[ ![Codeship Status for sensu-plugins/sensu-plugins-zookeeper](https://codeship.com/projects/324846e0-db39-0132-7a28-5ad94843e341/status?branch=master)](https://codeship.com/projects/79567)
+[ ![Codeship Status for sensu-plugins/sensu-plugins-zookeeper](https://codeship.com/projects/98cfbff0-e201-0132-51cf-3642858bbef8/status?branch=master)](https://codeship.com/projects/81353)
 
 ## Functionality
 
