@@ -4,9 +4,9 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'date'
 
 if RUBY_VERSION < '2.0.0'
-  require 'sensu-plugins-zendesk'
+  require 'sensu-plugins-zookeeper'
 else
-  require_relative 'lib/sensu-plugins-zendesk'
+  require_relative 'lib/sensu-plugins-zookeeper'
 end
 
 pvt_key = '~/.ssh/gem-private_key.pem'
@@ -33,7 +33,7 @@ Gem::Specification.new do |s|
   s.signing_key            = File.expand_path(pvt_key) if $PROGRAM_NAME =~ /gem\z/
   s.summary                = 'Sensu plugins for zookeeper'
   s.test_files             = s.files.grep(%r{^(test|spec|features)/})
-  s.version                = SensuPluginsWordpress::Version::VER_STRING
+  s.version                = SensuPluginsZookeeper::Version::VER_STRING
 
   s.add_runtime_dependency 'sensu-plugin', '1.1.0'
 
