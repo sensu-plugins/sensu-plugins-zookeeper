@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.authors                = ['Sensu Plugins and contributors']
   s.cert_chain             = ['certs/sensu-plugins.pem']
   s.date                   = Date.today.to_s
-  s.description            = 'Sensu plugins for zookeeper'
+  s.description            = 'Zookeeper plugins for checks and metrics'
   s.email                  = '<sensu-users@googlegroups.com>'
   s.executables            = Dir.glob('bin/**/*').map { |file| File.basename(file) }
   s.files                  = Dir.glob('{bin,lib}/**/*') + %w(LICENSE README.md CHANGELOG.md)
@@ -36,6 +36,7 @@ Gem::Specification.new do |s|
   s.version                = SensuPluginsZookeeper::Version::VER_STRING
 
   s.add_runtime_dependency 'sensu-plugin', '1.2.0'
+  s.add_runtime_dependency 'zookeeper',    '1.4.10'
 
   s.add_development_dependency 'codeclimate-test-reporter', '~> 0.4'
   s.add_development_dependency 'rubocop',                   '0.32.1'
