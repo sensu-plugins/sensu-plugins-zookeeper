@@ -36,7 +36,7 @@ Gem::Specification.new do |s|
   s.version                = SensuPluginsZookeeper::Version::VER_STRING
 
   s.add_runtime_dependency 'sensu-plugin', '1.2.0'
-  s.add_runtime_dependency 'zookeeper',    '1.4.10'
+  s.add_runtime_dependency 'zookeeper',    '1.4.11'
 
   s.add_development_dependency 'codeclimate-test-reporter', '~> 0.4'
   s.add_development_dependency 'rubocop',                   '0.32.1'

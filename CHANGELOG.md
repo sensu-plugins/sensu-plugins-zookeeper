@@ -5,9 +5,10 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## Unreleased][unreleased]
 
-## [0.0.4] - 2015-12-08
+## [0.0.4] - 2015-12-10
 ### Added
-- check-znode plugin
+- check-znode
+- metrics-zookeeper
 
 ## [0.0.3] - 2015-07-14
 ### Changed
