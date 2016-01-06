@@ -1,10 +1,15 @@
-#! /usr/bin/env ruby
+#!/usr/bin/env ruby
 #  encoding: UTF-8
 #
 #  check-zookeeper-ruok
 #
 # DESCRIPTION:
-#   check if zookeeper node responds with imok
+#   Check if Zookeeper node responds to 'ruok' query succesfully.
+#
+#   'ruok' is a ZooKeeper four letter word command (short for Are You Okay?)
+#   Specifically ruok tests if the server is running in a non-error state.
+#   The server will respond with imok if it is running. Otherwise it will
+#   not respond at all.
 #
 # PLATFORMS:
 #   All
@@ -13,10 +18,10 @@
 #   gem: sensu-plugin
 #
 # USAGE:
-#  check if a node has zookeeper running and responds with imok
-#  ./check-zookeeepr-ruok.rb # Equivalent to examples below
-#  ./check-zookeeepr-ruok.rb -s localhost -p 2181
-#  ./check-zookeeepr-ruok.rb --server localhost --port 2181
+#  Check if a node has Zookeeper running and responds with imok.
+#  ./check-zookeeeper-ruok.rb # Equivalent to examples below
+#  ./check-zookeeeper-ruok.rb -s localhost -p 2181
+#  ./check-zookeeeper-ruok.rb --server localhost --port 2181
 #
 # LICENCE:
 #   Phil Grayson <phil@philgrayson.com>
@@ -29,21 +34,21 @@ require 'socket'
 
 class CheckZookeeperRUOK < Sensu::Plugin::Check::CLI
   option :server,
-         description: 'zookeeper hostname to connect to',
+         description: 'Zookeeper hostname to connect to.',
          short: '-s HOSTNAME',
          long: '--server HOSTNAME',
          default: 'localhost'
 
   option :port,
-         description: 'zk port to connect to',
+         description: 'Zookeeper port to connect to.',
          short: '-p PORT',
          long: '--port PORT',
          default: 2181
 
   option :timeout,
-         description: 'how long to wait for a reply in seconds',
-         short: '-t TIMEOUT',
-         long: '--timeout PORT',
+         description: 'How long to wait for a reply in seconds.',
+         short: '-t SECS',
+         long: '--timeout SECS',
          proc: proc(&:to_i),
          default: 5
 
