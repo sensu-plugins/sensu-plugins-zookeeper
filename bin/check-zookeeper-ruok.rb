@@ -63,8 +63,8 @@ class CheckZookeeperRUOK < Sensu::Plugin::Check::CLI
 
       result = ready.first.first.read.chomp
 
-      ok %(Got '#{result}') if result == 'imok'
-      critical %(Got '#{result}')
+      ok 'Zookeeper reports no errors' if result == 'imok'
+      critical %(Zookeeper returned a non okay message: '#{result}')
     end
   end
 end
