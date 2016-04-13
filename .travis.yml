@@ -24,7 +24,7 @@ deploy:
     secure: Mswd19ZpQU0RqJEy2GnyDWTNgd9QCFYuN1q8bqs2U7lHpXARhLI+WDdCCfiyfiMQHxxOyrRLsra12DcREyaOQocQk2rGnlIEfu6GxmRytjyB8MLvowUgWun2D5Rxe4nvXeB5DSReZQMr0K2hm24FmMaUtBSu9N4rnciEn2EgCNM=
   gem: sensu-plugins-zookeeper
   on:
-    ags: true
+    tags: true
     all_branches: true
     rvm: 1.9.3
     rvm: 2.0
