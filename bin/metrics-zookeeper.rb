@@ -89,9 +89,9 @@ class ZookeeperMetrics < Sensu::Plugin::Metric::CLI::Graphite
     end
 
     metrics[:zk_is_leader] = if response =~ /^zk_server_state\s*leader$/
-                              1
+                               1
                              else
-                              0
+                               0
                              end
 
     if response =~ /^zk_znode_count\s*(\d+)$/
