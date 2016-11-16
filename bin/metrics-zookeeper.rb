@@ -88,10 +88,10 @@ class ZookeeperMetrics < Sensu::Plugin::Metric::CLI::Graphite
       metrics[:zk_outstanding_requests] = Regexp.last_match(1).to_i
     end
 
-    if response =~ /^zk_server_state\s*leader$/
-      metrics[:zk_is_leader] = 1
+    metrics[:zk_is_leader] = if response =~ /^zk_server_state\s*leader$/
+      1
     else
-      metrics[:zk_is_leader] = 0
+      0
     end
 
     if response =~ /^zk_znode_count\s*(\d+)$/
@@ -118,22 +118,22 @@ class ZookeeperMetrics < Sensu::Plugin::Metric::CLI::Graphite
       metrics[:zk_max_file_descriptor_count] = Regexp.last_match(1).to_i
     end
 
-    if response =~ /^zk_followers\s*(\d+)$/
-      metrics[:zk_followers] = Regexp.last_match(1).to_i
+    metrics[:zk_followers] = if response =~ /^zk_followers\s*(\d+)$/
+      Regexp.last_match(1).to_i
     else
-      metrics[:zk_followers] = 0
+      0
     end
 
-    if response =~ /^zk_synced_followers\s*(\d+)$/
-      metrics[:zk_synced_followers] = Regexp.last_match(1).to_i
+    metrics[:zk_synced_followers] = if response =~ /^zk_synced_followers\s*(\d+)$/
+      Regexp.last_match(1).to_i
     else
-      metrics[:zk_synced_followers] = 0
+      0
     end
 
-    if response =~ /^zk_pending_syncs\s*(\d+)$/
-      metrics[:zk_pending_syncs] = Regexp.last_match(1).to_i
+    metrics[:zk_pending_syncs] = if response =~ /^zk_pending_syncs\s*(\d+)$/
+      Regexp.last_match(1).to_i
     else
-      metrics[:zk_pending_syncs] = 0
+      0
     end
 
     metrics.each do |metric, value|
