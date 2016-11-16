@@ -125,10 +125,10 @@ class ZookeeperMetrics < Sensu::Plugin::Metric::CLI::Graphite
     end
 
     metrics[:zk_synced_followers] = if response =~ /^zk_synced_followers\s*(\d+)$/
-      Regexp.last_match(1).to_i
-    else
-      0
-    end
+                                      Regexp.last_match(1).to_i
+                                    else
+                                      0
+                                    end
 
     metrics[:zk_pending_syncs] = if response =~ /^zk_pending_syncs\s*(\d+)$/
       Regexp.last_match(1).to_i
