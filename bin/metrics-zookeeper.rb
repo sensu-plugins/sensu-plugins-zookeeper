@@ -57,42 +57,84 @@ class ZookeeperMetrics < Sensu::Plugin::Metric::CLI::Graphite
 
   def run
     timestamp = Time.now.to_i
-    response  = zk_command(:srvr) + zk_command(:wchs)
+    response  = zk_command(:mntr)
     metrics   = {}
 
-    if response =~ /^Sent: (\d+)$/
-      metrics[:sent] = Regexp.last_match(1).to_i
+    if response =~ /^zk_avg_latency\s*(\d+)$/
+      metrics[:zk_avg_latency] = Regexp.last_match(1).to_i
     end
 
-    if response =~ /^Received: (\d+)$/
-      metrics[:received] = Regexp.last_match(1).to_i
+    if response =~ /^zk_max_latency\s*(\d+)$/
+      metrics[:zk_max_latency] = Regexp.last_match(1).to_i
     end
 
-    if response =~ /^Connections: (\d+)$/
-      metrics[:connections] = Regexp.last_match(1).to_i
+    if response =~ /^zk_min_latency\s*(\d+)$/
+      metrics[:zk_min_latency] = Regexp.last_match(1).to_i
     end
 
-    if response =~ /^Outstanding: (\d+)$/
-      metrics[:outstanding] = Regexp.last_match(1).to_i
+    if response =~ /^zk_packets_received\s*(\d+)$/
+      metrics[:zk_packets_received] = Regexp.last_match(1).to_i
     end
 
-    if response =~ /^Node count: (\d+)$/
-      metrics[:node_count] = Regexp.last_match(1).to_i
+    if response =~ /^zk_packets_sent\s*(\d+)$/
+      metrics[:zk_packets_sent] = Regexp.last_match(1).to_i
     end
 
-    if response =~ /^Latency min\/avg\/max: (\d+)\/(\d+)\/(\d+)$/
-      metrics[:latency_min] = Regexp.last_match(1).to_i
-      metrics[:latency_avg] = Regexp.last_match(2).to_i
-      metrics[:latency_max] = Regexp.last_match(3).to_i
+    if response =~ /^zk_num_alive_connections\s*(\d+)$/
+      metrics[:zk_num_alive_connections] = Regexp.last_match(1).to_i
     end
 
-    if response =~ /^Total watches:\s*(\d+)$/
-      metrics[:watches_total] = Regexp.last_match(1).to_i
+    if response =~ /^zk_outstanding_requests\s*(\d+)$/
+      metrics[:zk_outstanding_requests] = Regexp.last_match(1).to_i
     end
 
-    if response =~ /watching (\d+) paths/
-      metrics[:watches_paths] = Regexp.last_match(1).to_i
+    metrics[:zk_is_leader] = if response =~ /^zk_server_state\s*leader$/
+                               1
+                             else
+                               0
+                             end
+
+    if response =~ /^zk_znode_count\s*(\d+)$/
+      metrics[:zk_znode_count] = Regexp.last_match(1).to_i
     end
+
+    if response =~ /^zk_watch_count\s*(\d+)$/
+      metrics[:zk_watch_count] = Regexp.last_match(1).to_i
+    end
+
+    if response =~ /^zk_ephemerals_count\s*(\d+)$/
+      metrics[:zk_ephemerals_count] = Regexp.last_match(1).to_i
+    end
+
+    if response =~ /^zk_approximate_data_size\s*(\d+)$/
+      metrics[:zk_approximate_data_size] = Regexp.last_match(1).to_i
+    end
+
+    if response =~ /^zk_open_file_descriptor_count\s*(\d+)$/
+      metrics[:zk_open_file_descriptor_count] = Regexp.last_match(1).to_i
+    end
+
+    if response =~ /^zk_max_file_descriptor_count\s*(\d+)$/
+      metrics[:zk_max_file_descriptor_count] = Regexp.last_match(1).to_i
+    end
+
+    metrics[:zk_followers] = if response =~ /^zk_followers\s*(\d+)$/
+                               Regexp.last_match(1).to_i
+                             else
+                               0
+                             end
+
+    metrics[:zk_synced_followers] = if response =~ /^zk_synced_followers\s*(\d+)$/
+                                      Regexp.last_match(1).to_i
+                                    else
+                                      0
+                                    end
+
+    metrics[:zk_pending_syncs] = if response =~ /^zk_pending_syncs\s*(\d+)$/
+                                   Regexp.last_match(1).to_i
+                                 else
+                                   0
+                                 end
 
     metrics.each do |metric, value|
       output dotted(config[:scheme], metric), value, timestamp
