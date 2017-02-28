@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+### Aded
+- check-zookeeper-reqs
+- check-zookeeper-latency
+- check-zookeeper-file-descriptors
 
 ## [0.1.0] - 2016-03-05
 ### Added
