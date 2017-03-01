@@ -12,7 +12,6 @@ notifications:
   email:
     recipients:
     - yrochnyak@gmail.com
-
     on_success: change
     on_failure: always
 script:
