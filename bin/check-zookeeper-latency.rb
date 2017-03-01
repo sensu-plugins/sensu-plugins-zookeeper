@@ -7,7 +7,7 @@
 #   Check average latency on Zookeeper node.
 #
 #   'mntr' is a ZooKeeper four letter word command, which outputs
-#   Specifically latency is an amount of time it takes for the server 
+#   Specifically latency is an amount of time it takes for the server
 #   to respond to a client request (since the server was started).
 #
 # PLATFORMS:
@@ -70,7 +70,7 @@ class CheckZookeeperREQS < Sensu::Plugin::Check::CLI
       result = ready.first.first.read.chomp.split("\n")
       avg_latency = result[1].split("\t")[1].to_i
 
-      ok "Zookeeper has average latency #{avg_latency}" if (avg_latency < config[:avg_latency_critical])
+      ok "Zookeeper has average latency #{avg_latency}" if avg_latency < config[:avg_latency_critical]
       critical %(Zookeeper's average latency is #{avg_latency}, which is more than #{config[:avg_latency_critical]} threshold)
     end
   end

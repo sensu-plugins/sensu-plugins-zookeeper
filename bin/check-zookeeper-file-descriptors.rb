@@ -36,30 +36,30 @@ require 'socket'
 
 class CheckZookeeperREQS < Sensu::Plugin::Check::CLI
   option :server,
-	 description: 'Zookeeper hostname to connect to.',
-	 short: '-s HOSTNAME',
-	 long: '--server HOSTNAME',
-	 default: 'localhost'
+         description: 'Zookeeper hostname to connect to.',
+         short: '-s HOSTNAME',
+         long: '--server HOSTNAME',
+         default: 'localhost'
 
   option :port,
-	 description: 'Zookeeper port to connect to.',
-	 short: '-p PORT',
-	 long: '--port PORT',
-	 default: 2181
+         description: 'Zookeeper port to connect to.',
+         short: '-p PORT',
+         long: '--port PORT',
+         default: 2181
 
   option :timeout,
-	 description: 'How long to wait for a reply in seconds.',
-	 short: '-t SECS',
-	 long: '--timeout SECS',
-	 proc: proc(&:to_i),
-	 default: 5
+         description: 'How long to wait for a reply in seconds.',
+         short: '-t SECS',
+         long: '--timeout SECS',
+         proc: proc(&:to_i),
+         default: 5
 
   option :fd_critical,
-	 description: 'Critical threshold for Zookeeper open files descriptors',
-	 short: '-d DESCRIPTORS',
-	 long: '--file-descriptors DESCRIPTORS',
-	 proc: proc(&:to_f),
-	 default: 0.85
+         description: 'Critical threshold for Zookeeper open files descriptors',
+         short: '-d DESCRIPTORS',
+         long: '--file-descriptors DESCRIPTORS',
+         proc: proc(&:to_f),
+         default: 0.85
 
   def run
     TCPSocket.open(config[:server], config[:port]) do |socket|
@@ -67,13 +67,13 @@ class CheckZookeeperREQS < Sensu::Plugin::Check::CLI
       ready = IO.select([socket], nil, nil, config[:timeout])
 
       if ready.nil?
-	critical %(Zookeeper did not respond to 'mntr' within #{config[:timeout]} seconds)
+        critical %(Zookeeper did not respond to 'mntr' within #{config[:timeout]} seconds)
       end
 
       result = ready.first.first.read.chomp.split("\n")
       avg_fd = (result[13].split("\t")[1].to_f / result[14].split("\t")[1].to_f)
 
-      ok "Zookeeper's open file descriptors rate is #{avg_fd}" if (avg_fd < config[:fd_critical])
+      ok "Zookeeper's open file descriptors rate is #{avg_fd}" if avg_fd < config[:fd_critical]
       critical %(Zookeeper's open file descriptors rate is #{avg_fd}, which is more than #{config[:fd_critical]} threshold)
     end
   end
