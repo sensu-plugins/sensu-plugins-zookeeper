@@ -64,7 +64,7 @@ class CheckZookeeperREQS < Sensu::Plugin::Check::CLI
       ready = IO.select([socket], nil, nil, config[:timeout])
 
       if ready.nil?
-        critical %(Zookeeper did not respond to 'mntr' within #{config[:timeout]} seconds)
+        critical "Zookeeper did not respond to 'mntr' within #{config[:timeout]} seconds"
       end
 
       result = ready.first.first.read.chomp.split("\n")
