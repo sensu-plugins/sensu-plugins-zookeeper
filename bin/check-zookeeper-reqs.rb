@@ -67,14 +67,14 @@ class CheckZookeeperREQS < Sensu::Plugin::Check::CLI
       ready = IO.select([socket], nil, nil, config[:timeout])
 
       if ready.nil?
-        critical "Zookeeper did not respond to 'mntr' within #{config[:timeout]} seconds"
+        critical %(Zookeeper did not respond to 'mntr' within #{config[:timeout]} seconds)
       end
 
       result = ready.first.first.read.chomp.split("\n")
       out_reqs = result[7].split("\t")[1].to_i
 
-      ok "Zookeeper has #{out_reqs} outstanding requests" if out_reqs < config[:out_reqs_critical]
-      critical "Zookeeper has #{out_reqs} outstanding requests, which is more than #{config[:out_reqs_critical]} threshold"
+      ok %(Zookeeper has #{out_reqs} outstanding requests) if out_reqs < config[:out_reqs_critical]
+      critical %(Zookeeper has #{out_reqs} outstanding requests, which is more than #{config[:out_reqs_critical]} threshold)
     end
   end
 end

@@ -64,14 +64,14 @@ class CheckZookeeperREQS < Sensu::Plugin::Check::CLI
       ready = IO.select([socket], nil, nil, config[:timeout])
 
       if ready.nil?
-        critical "Zookeeper did not respond to 'mntr' within #{config[:timeout]} seconds"
+        critical %(Zookeeper did not respond to 'mntr' within #{config[:timeout]} seconds)
       end
 
       result = ready.first.first.read.chomp.split("\n")
       avg_latency = result[1].split("\t")[1].to_i
 
-      ok "Zookeeper has average latency #{avg_latency}" if avg_latency < config[:avg_latency_critical]
-      critical "Zookeeper's average latency is #{avg_latency}, which is more than #{config[:avg_latency_critical]} threshold"
+      ok %(Zookeeper has average latency #{avg_latency}) if avg_latency < config[:avg_latency_critical]
+      critical %(Zookeeper's average latency is #{avg_latency}, which is more than #{config[:avg_latency_critical]} threshold)
     end
   end
 end

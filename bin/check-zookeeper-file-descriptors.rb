@@ -67,14 +67,14 @@ class CheckZookeeperREQS < Sensu::Plugin::Check::CLI
       ready = IO.select([socket], nil, nil, config[:timeout])
 
       if ready.nil?
-        critical "Zookeeper did not respond to 'mntr' within #{config[:timeout]} seconds"
+        critical %(Zookeeper did not respond to 'mntr' within #{config[:timeout]} seconds)
       end
 
       result = ready.first.first.read.chomp.split("\n")
       avg_fd = (result[13].split("\t")[1].to_f / result[14].split("\t")[1].to_f)
 
-      ok "Zookeeper's open file descriptors rate is #{avg_fd}" if avg_fd < config[:fd_critical]
-      critical "Zookeeper's open file descriptors rate is #{avg_fd}, which is more than #{config[:fd_critical]} threshold"
+      ok %(Zookeeper's open file descriptors rate is #{avg_fd}) if avg_fd < config[:fd_critical]
+      critical %(Zookeeper's open file descriptors rate is #{avg_fd}, which is more than #{config[:fd_critical]} threshold)
     end
   end
 end
