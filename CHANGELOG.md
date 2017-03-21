@@ -1,13 +1,18 @@
-#Change Log
+# Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
-## [Unreleased] = 2017-02-28
-### Aded
-- check-zookeeper-reqs
-- check-zookeeper-latency
-- check-zookeeper-file-descriptors
+## [Unreleased]
+### Added
+- check-zookeeper-reqs (@grem11n)
+- check-zookeeper-latency (@grem11n)
+- check-zookeeper-file-descriptors (@grem11n)
+- support for Ruby 2.3.0 (@eheydrick)
+- `metrics-zookeeper.rb`: Switch to using the `mntr` command to gather metrics and add additional metrics (@jasiek191)
+
+### Removed
+- support for Ruby 1.9.3 (@eheydrick)
 
 ## [0.1.0] - 2016-03-05
 ### Added
