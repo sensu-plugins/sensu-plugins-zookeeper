@@ -15,6 +15,7 @@
 * check-zookeeper-latency.rb - Check average latency on Zookeeper node
 * check-zookeeper-reqs.rb - Check if Zookeeper node has reliable number of outstanding requests
 * check-zookeeper-ruok.rb - Check if Zookeeper node responds to 'ruok' query succesfully
+* check-zookeeper-mode.rb - Check if Zookeeper node is in standalone or cluster(leader or follower) mode
 * metrics-zookeeper.rb - Gather metrics from Zookeeper
 
 ## Usage
