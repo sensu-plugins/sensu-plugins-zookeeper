@@ -65,7 +65,7 @@ class CheckZookeeperMode < Sensu::Plugin::Check::CLI
     response = zk_command(:stat)
     mode = get_mode(response)
     expected_modes = config[:mode].split
-    if expected_modes.include?(mode)  
+    if expected_modes.include?(mode)
       ok(mode)
     else
       critical("Zookeeper mode is #{mode} and it does not match #{expected_modes.join(', ')}")
@@ -73,14 +73,12 @@ class CheckZookeeperMode < Sensu::Plugin::Check::CLI
   end
 
   private
-  
+
   def get_mode(response)
-		response.each_line do |line|
-			line = line.chomp
-			k, v = line.split(': ')
-			return v if k == 'Mode'
-		end
+    response.each_line do |line|
+      line = line.chomp
+      k, v = line.split(': ')
+      return v if k == 'Mode'
+    end
   end
-
 end
-
