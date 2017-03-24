@@ -5,6 +5,9 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## [Unreleased]
 
+## [1.1.0]
+- check-zookeeper-mode
+
 ## [1.0.0] - 2017-03-21
 ### Added
 - check-zookeeper-reqs (@grem11n)
