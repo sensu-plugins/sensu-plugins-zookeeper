@@ -5,8 +5,8 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## [Unreleased]
 
-## [1.1.0]
-- check-zookeeper-mode
+## [1.1.0] - 2017-03-23
+- add `check-zookeeper-mode` to check if zookeeper is in the expected mode (@karthik-altiscale)
 
 ## [1.0.0] - 2017-03-21
 ### Added
@@ -43,7 +43,8 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-zookeeper/compare/1.0.0...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-zookeeper/compare/1.1.0...HEAD
+[1.1.0]: https://github.com/sensu-plugins/sensu-plugins-zookeeper/compare/1.0.0...1.1.0
 [1.0.0]: https://github.com/sensu-plugins/sensu-plugins-zookeeper/compare/0.1.0...1.0.0
 [0.1.0]: https://github.com/sensu-plugins/sensu-plugins-zookeeper/compare/0.0.4...0.1.0
 [0.0.4]: https://github.com/sensu-plugins/sensu-plugins-zookeeper/compare/0.0.3...0.0.4
