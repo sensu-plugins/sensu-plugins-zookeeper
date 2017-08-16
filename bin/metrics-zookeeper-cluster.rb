@@ -6,7 +6,7 @@
 # ===
 #
 # DESCRIPTION:
-# This plugin gathers metrics from an Exhibitor run ZooKeeper cluster, 
+# This plugin gathers metrics from an Exhibitor run ZooKeeper cluster,
 # based on the collectd plugin:
 #
 #   https://github.com/Nextdoor/collectd_plugins/blob/master/zookeeper/zookeeper.sh
