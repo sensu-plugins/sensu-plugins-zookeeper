@@ -35,7 +35,21 @@ class CheckZookeeperCluster < Sensu::Plugin::Check::CLI
          description: 'Zookeeper cluster node count',
          short: '-c count',
          long: '--count count',
+         default: 3,
+         proc: proc(&:to_i)
+
+  option :zk_port,
+         description: 'Zookeeper nodes\' listen port',
+         short: '-p port',
+         long: '--port port',
          default: 2181,
+         proc: proc(&:to_i)
+
+  option :count,
+         description: 'Zookeeper cluster node count',
+         short: '-c count',
+         long: '--count count',
+         default: 3,
          proc: proc(&:to_i)
 
   option :exhibitor,
@@ -89,7 +103,7 @@ class CheckZookeeperCluster < Sensu::Plugin::Check::CLI
     l_count = max_latency = 0
     json.each do |zk|
       l_count += 1 if zk['isLeader']
-      l = zookeeper_latency(zk['hostname'], 2181)
+      l = zookeeper_latency(zk['hostname'], config[:zk_port])
       max_latency = [max_latency, l].max
     end
     [l_count, max_latency]
@@ -98,10 +112,12 @@ class CheckZookeeperCluster < Sensu::Plugin::Check::CLI
   def _check_leader(json)
     e = []
     l_count, max_latency = _leader_count(json)
-    l_count != 1 &&
+    unless l_count == 1
       e.push("cluster should have a leader (#{l_count})")
-    max_latency > config[:latency] &&
+    end
+    if max_latency > config[:latency]
       e.push("cluster should have a lower latecy #{max_latency}")
+    end
     return [true, e] if l_count == 1 && max_latency < config[:latency]
     [false, e]
   end
@@ -119,7 +135,8 @@ class CheckZookeeperCluster < Sensu::Plugin::Check::CLI
   end
 
   def check_exhibitor
-    response = json = ''
+    response = ''
+    json = ''
     url = URI.parse(config[:exhibitor])
     req = Net::HTTP::Get.new(url.path)
     Net::HTTP.new(url.host, url.port).start do |http|
@@ -135,7 +152,7 @@ class CheckZookeeperCluster < Sensu::Plugin::Check::CLI
     r = true
     hosts = []
     json.each do |zk|
-      r = check_ruok(zk['hostname'], 2181)
+      r = check_ruok(zk['hostname'], config[:zk_port])
       hosts.push(zk['hostname'])
       return [false, ["#{zk['hostname']} is not ok"]] unless r
     end
