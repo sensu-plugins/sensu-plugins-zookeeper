@@ -39,7 +39,7 @@ class ZookeeperMetrics < Sensu::Plugin::Metric::CLI::Graphite
   option :scheme,
          description: 'Metric naming scheme, text to prepend to metrics',
          long: '--scheme SCHEME',
-         default: 'zookeeper.'
+         default: 'zookeeper'
 
   def dotted(*args)
     args.join('.')
@@ -57,12 +57,17 @@ class ZookeeperMetrics < Sensu::Plugin::Metric::CLI::Graphite
     response = json = ''
     url = URI.parse(config[:exhibitor])
     req = Net::HTTP::Get.new(url.path)
-    Net::HTTP.new(url.host, url.port).start do |http|
-      response = http.request(req)
+    [1..3].each do
+      Net::HTTP.new(url.host, url.port).start do |http|
+        response = http.request(req)
+      end
+      next unless response.is_a? Net::HTTPRedirection
     end
-    return [false, json, ['exhibitor status is not http 200']] unless
-      response.is_a? Net::HTTPSuccess
-    _j = JSON.parse(response.body)
+    if response.is_a? Net::HTTPSuccess
+          JSON.parse(response.body)
+    else
+          [false, json, ['exhibitor status is not http 200']]
+    end
   end
 
   def run
