@@ -64,9 +64,9 @@ class ZookeeperMetrics < Sensu::Plugin::Metric::CLI::Graphite
       next unless response.is_a? Net::HTTPRedirection
     end
     if response.is_a? Net::HTTPSuccess
-          JSON.parse(response.body)
+      JSON.parse(response.body)
     else
-          [false, json, ['exhibitor status is not http 200']]
+      [false, json, ['exhibitor status is not http 200']]
     end
   end
 
