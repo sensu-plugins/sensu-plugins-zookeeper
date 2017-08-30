@@ -67,19 +67,19 @@ class ZookeeperMetrics < Sensu::Plugin::Metric::CLI::Graphite
       response = http.request(request)
 
       case response
-        when Net::HTTPSuccess then
-          break
-        when Net::HTTPRedirection then
-          location = response['Location']
-          cookie = response['Set-Cookie']
-          new_uri = URI.parse(location)
-          uri_str = if new_uri.relative?
-                      url + location
-                    else
-                      new_uri.to_s
-                    end
-        else
-          raise 'Unexpected response: ' + response.inspect
+      when Net::HTTPSuccess then
+        break
+      when Net::HTTPRedirection then
+        location = response['Location']
+        cookie = response['Set-Cookie']
+        new_uri = URI.parse(location)
+        uri_str = if new_uri.relative?
+                    url + location
+                  else
+                    new_uri.to_s
+                  end
+      else
+        raise 'Unexpected response: ' + response.inspect
       end
 
     end
@@ -101,13 +101,10 @@ class ZookeeperMetrics < Sensu::Plugin::Metric::CLI::Graphite
   end
 
   def exhibitor_status
-    response = json = ''
-    begin
-      response = follow_url(config[:exhibitor])
-      JSON.parse(response.body)
-    rescue Exception => e
-      [false, json, ['exhibitor status is not http 200 ' + e.message]]
-    end
+    response = follow_url(config[:exhibitor])
+    JSON.parse(response.body)
+  rescue StandardError => e
+    [false, json, ['exhibitor status is not http 200 ' + e.message]]
   end
 
   def run
