@@ -1,15 +1,26 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
+This CHANGELOG follows the format listed at [Our CHANGELOG Guidelines ](https://github.com/sensu-plugins/community/blob/master/HOW_WE_CHANGELOG.md).
+Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+
+## [1.3.0] - 2017-09-09
+### Added
+- metrics-zookeeper-cluster.rb: new script to gather metrics from a zookeeper cluster (@fsniper)
+
+### Changed
+- metrics-zookeeper-cluster.rb: use the plugin name + version as the default user agent over some arbitrary version of curl (@majormoses)
+- updated PR template and CHANGELOG with new CHANGELOG guideline location (@majormoses)
+
+### Fixed
+- spelling in PR template (@majormoses)
 
 ## [1.2.0] - 2017-08-28
 ### Added
 - check-zookeper-cluster
 - Ruby 2.4.1 testing
-- metrics-zookeeper-cluster.rb
 
 ## [1.1.0] - 2017-03-23
 - add `check-zookeeper-mode` to check if zookeeper is in the expected mode (@karthik-altiscale)
@@ -49,7 +60,8 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-zookeeper/compare/1.1.0...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-zookeeper/compare/1.3.0...HEAD
+[1.3.0]: https://github.com/sensu-plugins/sensu-plugins-zookeeper/compare/1.2.0...1.3.0
 [1.2.0]: https://github.com/sensu-plugins/sensu-plugins-zookeeper/compare/1.1.0...1.2.0
 [1.1.0]: https://github.com/sensu-plugins/sensu-plugins-zookeeper/compare/1.0.0...1.1.0
 [1.0.0]: https://github.com/sensu-plugins/sensu-plugins-zookeeper/compare/0.1.0...1.0.0

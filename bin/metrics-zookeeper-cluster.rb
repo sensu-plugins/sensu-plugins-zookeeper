@@ -41,7 +41,7 @@ class ZookeeperMetrics < Sensu::Plugin::Metric::CLI::Graphite
          long: '--scheme SCHEME',
          default: 'zookeeper'
 
-  def follow_url(uri_str, agent = 'curl/7.43.0', max_attempts = 10, timeout = 10)
+  def follow_url(uri_str, agent = "sensu-plugins-zookeeper/#{SensuPluginsZookeeper::Version::VER_STRING}", max_attempts = 10, timeout = 10)
     attempts = 0
     cookie = nil
 
