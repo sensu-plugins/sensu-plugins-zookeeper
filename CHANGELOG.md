@@ -9,6 +9,7 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - check-zookeper-cluster
 - Ruby 2.4.1 testing
+- metrics-zookeeper-cluster.rb
 
 ## [1.1.0] - 2017-03-23
 - add `check-zookeeper-mode` to check if zookeeper is in the expected mode (@karthik-altiscale)
