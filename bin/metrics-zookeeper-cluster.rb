@@ -25,6 +25,7 @@
 #
 
 require 'sensu-plugin/metric/cli'
+require 'sensu-plugins-zookeeper/version'
 require 'socket'
 require 'net/http'
 require 'json'
@@ -40,6 +41,14 @@ class ZookeeperMetrics < Sensu::Plugin::Metric::CLI::Graphite
          description: 'Metric naming scheme, text to prepend to metrics',
          long: '--scheme SCHEME',
          default: 'zookeeper'
+
+  option :zk_port,
+         description: 'Zookeeper nodes\' listen port',
+         short: '-p port',
+         long: '--port port',
+         default: 2181,
+         proc: proc(&:to_i)
+
 
   def follow_url(uri_str, agent = "sensu-plugins-zookeeper/#{SensuPluginsZookeeper::Version::VER_STRING}", max_attempts = 10, timeout = 10)
     attempts = 0
@@ -102,7 +111,7 @@ class ZookeeperMetrics < Sensu::Plugin::Metric::CLI::Graphite
 
   def exhibitor_status
     response = follow_url(config[:exhibitor])
-    JSON.parse(response.body)
+    json = JSON.parse(response.body)
   rescue StandardError => e
     [false, json, ['exhibitor status is not http 200 ' + e.message]]
   end
@@ -113,7 +122,7 @@ class ZookeeperMetrics < Sensu::Plugin::Metric::CLI::Graphite
     json = exhibitor_status
     json.each do |zk|
       hostname = zk['hostname']
-      response  = zk_command(:mntr, hostname, 2181)
+      response  = zk_command(:mntr, hostname, config[:zk_port])
       metrics   = {}
 
       if response =~ /^zk_avg_latency\s*(\d+)$/
