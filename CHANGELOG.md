@@ -5,6 +5,11 @@ This CHANGELOG follows the format listed at [Our CHANGELOG Guidelines ](https://
 Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+### Added
+- Added zookeeper port option to metrics-zookeeper-cluster.rb
+
+### Fixed
+- Fixed a return bug in case of an error on metrics-zookeeper-cluster.rb
 
 ## [1.3.0] - 2017-09-09
 ### Added
