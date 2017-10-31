@@ -5,6 +5,8 @@ This CHANGELOG follows the format listed at [Our CHANGELOG Guidelines ](https://
 Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+
+## [1.4.0] - 2017-10-31
 ### Added
 - Added zookeeper port option to metrics-zookeeper-cluster.rb
 
@@ -66,6 +68,7 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 - initial release
 
 [Unreleased]: https://github.com/sensu-plugins/sensu-plugins-zookeeper/compare/1.3.0...HEAD
+[1.4.0]: https://github.com/sensu-plugins/sensu-plugins-zookeeper/compare/1.3.0...1.4.0
 [1.3.0]: https://github.com/sensu-plugins/sensu-plugins-zookeeper/compare/1.2.0...1.3.0
 [1.2.0]: https://github.com/sensu-plugins/sensu-plugins-zookeeper/compare/1.1.0...1.2.0
 [1.1.0]: https://github.com/sensu-plugins/sensu-plugins-zookeeper/compare/1.0.0...1.1.0
