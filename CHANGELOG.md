@@ -5,6 +5,11 @@ This CHANGELOG follows the format listed at [Our CHANGELOG Guidelines ](https://
 Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+### Security
+- updated rubocop dependency to `~> 0.51.0` per: https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-8418. (@thomasriley)
+
+### Breaking Changes
+- removed < ruby 2.1 support which was pulled as part of security updates (@thomasriley)
 
 ## [1.5.0] - 2017-12-06
 ### Added
