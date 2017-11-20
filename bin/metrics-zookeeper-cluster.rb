@@ -49,6 +49,8 @@ class ZookeeperMetrics < Sensu::Plugin::Metric::CLI::Graphite
          default: 2181,
          proc: proc(&:to_i)
 
+  # TODO: Remove below when Rubocop is updated (https://github.com/sensu-plugins/community/issues/77#issuecomment-345813238)
+  # rubocop:disable Style/CommentedKeyword
   def follow_url(uri_str, agent = "sensu-plugins-zookeeper/#{SensuPluginsZookeeper::Version::VER_STRING}", max_attempts = 10, timeout = 10)
     attempts = 0
     cookie = nil
@@ -119,6 +121,8 @@ class ZookeeperMetrics < Sensu::Plugin::Metric::CLI::Graphite
     timestamp = Time.now.to_i
 
     json = exhibitor_status
+
+    # rubocop:disable Metrics/BlockLength
     json.each do |zk|
       hostname = zk['hostname']
       response  = zk_command(:mntr, hostname, config[:zk_port])

@@ -11,6 +11,9 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 ### Breaking Changes
 - removed < ruby 2.1 support which was pulled as part of security updates (@thomasriley)
 
+### Changed
+- Various amendments to comply with Rubocop (@thomasriley)
+
 ## [1.5.0] - 2017-12-06
 ### Added
 - check-netty-zookeeper-cluster.rb: new script to check if a zookeeper v. 3.5 cluster is OK (@duncaan)
