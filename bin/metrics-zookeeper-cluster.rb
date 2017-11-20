@@ -122,6 +122,7 @@ class ZookeeperMetrics < Sensu::Plugin::Metric::CLI::Graphite
 
     json = exhibitor_status
 
+    # TODO: Need to shortern this function
     # rubocop:disable Metrics/BlockLength
     json.each do |zk|
       hostname = zk['hostname']
