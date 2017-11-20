@@ -49,7 +49,7 @@ class ZookeeperMetrics < Sensu::Plugin::Metric::CLI::Graphite
          default: 2181,
          proc: proc(&:to_i)
 
-  # TODO: Remove below when Rubocop is updated (https://github.com/sensu-plugins/community/issues/77#issuecomment-345813238)
+  # TODO: Remove rubocop:disable Style/CommentedKeyword on this function when fixed (https://github.com/sensu-plugins/community/issues/77#issuecomment-345813238)
   # rubocop:disable Style/CommentedKeyword
   def follow_url(uri_str, agent = "sensu-plugins-zookeeper/#{SensuPluginsZookeeper::Version::VER_STRING}", max_attempts = 10, timeout = 10)
     attempts = 0
@@ -97,6 +97,7 @@ class ZookeeperMetrics < Sensu::Plugin::Metric::CLI::Graphite
 
     response
   end
+  # rubocop:enable Style/CommentedKeyword
 
   def dotted(*args)
     args.join('.')
@@ -123,8 +124,7 @@ class ZookeeperMetrics < Sensu::Plugin::Metric::CLI::Graphite
     json = exhibitor_status
 
     # TODO: Need to shortern this function
-    # rubocop:disable Metrics/BlockLength
-    json.each do |zk|
+    json.each do |zk| # rubocop:disable Metrics/BlockLength
       hostname = zk['hostname']
       response  = zk_command(:mntr, hostname, config[:zk_port])
       metrics   = {}
