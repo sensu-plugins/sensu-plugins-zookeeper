@@ -23,6 +23,11 @@
 #  Cluster should have 3 (n+1) nodes and average latency threshold should be 10
 #  ./check-zookeeeper-cluster.rb -c 2 -l 10
 #
+# LICENCE:
+#   Duncan Schulze <duschulze@gmail.com>
+#   Released under the same terms as Sensu (the MIT license); see LICENSE
+#   for details.
+#
 
 require 'sensu-plugin/check/cli'
 require 'rest-client'
