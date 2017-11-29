@@ -17,6 +17,7 @@
 * check-zookeeper-ruok.rb - Check if Zookeeper node responds to 'ruok' query succesfully
 * check-zookeeper-mode.rb - Check if Zookeeper node is in standalone or cluster(leader or follower) mode
 * check-zookeeper-cluster.rb - Check if a exhibitor managed Zookeeper cluster is OK.
+* check-zookeeper_3.5-cluster.rb - Check if a zookeeper 3.5 cluster is OK.
 * metrics-zookeeper.rb - Gather metrics from Zookeeper
 * metrics-zookeeper-cluster.rb - Gather metrics from An Exhibitor run Zookeeper cluster
 
