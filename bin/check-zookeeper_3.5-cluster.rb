@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 #  encoding: UTF-8
+
 #
 #  check-zookeeper_3.5-cluster
 #
@@ -62,22 +63,22 @@ class CheckZookeeperCluster < Sensu::Plugin::Check::CLI
   def are_you_ok
     response = get_monitoring_output(config[:netty_port])
     if response['error'].nil?
-      return {success: true,
-              message: 'Zookeeper is ok'}
+      return { success: true,
+        message: 'Zookeeper is ok' }
     else
-      return {success: false,
-              message: 'Zookeeper is not ok, look into the logs'}
+      return { success: false,
+        message: 'Zookeeper is not ok, look into the logs' }
     end
   end
 
   def zookeeper_latency
     response = get_monitoring_output(config[:netty_port])
     if response['avg_latency'].to_i > config[:latecy].to_i
-      return {success: false,
-              message: %(Zookeeper latency is greater than #{config['latency']} seconds)}
+      return { success: false,
+        message: %(Zookeeper latency is greater than #{config['latency']} seconds) }
     else
-      return {success: true,
-              message: 'Zookeeper latency is ok'}
+      return { success: true,
+        message: 'Zookeeper latency is ok' }
     end
   end
 
@@ -85,15 +86,15 @@ class CheckZookeeperCluster < Sensu::Plugin::Check::CLI
     response = get_monitoring_output(config[:netty_port])
     if response['server_state'].to_s == 'leader'
       if response['synced_followers'].to_i == config[:followers].to_i
-        return {success: true,
-                message: 'Zookeeper follower count is correct'}
+        return { success: true,
+          message: 'Zookeeper follower count is correct' }
       else
-        return {success: false,
-                message: %(Zookeeper follower count is not equal to #{config[:followers]}!)}
+        return { success: false,
+          message: %(Zookeeper follower count is not equal to #{config[:followers]}!) }
       end
     else
-      return {success: true,
-              message: 'Not the leader, follower check does not apply'}
+      return { success: true,
+        message: 'Not the leader, follower check does not apply' }
     end
   end
 
@@ -107,9 +108,9 @@ class CheckZookeeperCluster < Sensu::Plugin::Check::CLI
     results.push(zookeeper_latency_result)
     results.push(follower_count_result)
 
-    output = "SUCCESS: #{results.select {|h| h[:success]}.map {|h| h[:message]}}\n FAIL: #{results.reject {|h| h[:success]}.map {|h| h[:message]}}"
+    output = "SUCCESS: #{results.select { |h| h[:success] }.map { |h| h[:message] }}\n FAIL: #{results.reject { |h| h[:success] }.map { |h| h[:message] }}"
 
-    if results.any? {|h| !h[:success]}
+    if results.any? { |h| !h[:success] }
       warning output
     else
       ok output
