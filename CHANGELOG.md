@@ -5,6 +5,8 @@ This CHANGELOG follows the format listed at [Our CHANGELOG Guidelines ](https://
 Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+### Added
+- check-zookeeper_3.5-cluster.rb: new script to check if a zookeeper 3.5 cluster is OK (@duncaan)
 
 ## [1.4.0] - 2017-10-31
 ### Added
