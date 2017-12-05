@@ -2,10 +2,10 @@
 #  encoding: UTF-8
 
 #
-#  check-zookeeper_3.5-cluster
+#  netty-check-zookeeper-cluster
 #
 # DESCRIPTION:
-#   Check if a Zookeeper-3.5 cluster is OK.
+#   Check if a Zookeeper 3.5 cluster is OK.
 #
 #   This check will each verify each node for errors,
 #   check averag latency for a threshold value,
@@ -21,7 +21,7 @@
 #  Check if a node has Zookeeper running and responds with imok.
 #
 #  Cluster should have 3 (n+1) nodes and average latency threshold should be 10
-#  ./check-zookeeeper-cluster.rb -c 2 -l 10
+#  ./netty-check-zookeeeper-cluster.rb -c 2 -l 10
 #
 # LICENCE:
 #   Duncan Schulze <duschulze@gmail.com>
