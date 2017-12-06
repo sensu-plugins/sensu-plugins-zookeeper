@@ -62,10 +62,10 @@ class CheckZookeeperCluster < Sensu::Plugin::Check::CLI
     request = Net::HTTP::Get.new(uri.request_uri)
     response = http.request(request)
     JSON.parse(response.body)
-    rescue Errno::ECONNREFUSED
-      warning 'Connection refused'
-    rescue Timeout::Error
-      warning 'Connection timed out'
+  rescue Errno::ECONNREFUSED
+    warning 'Connection refused'
+  rescue Timeout::Error
+    warning 'Connection timed out'
   end
 
   def are_you_ok
