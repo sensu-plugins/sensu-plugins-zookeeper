@@ -56,13 +56,16 @@ class CheckZookeeperCluster < Sensu::Plugin::Check::CLI
          default: 10
 
   def get_monitoring_output(port)
-    r = RestClient::Resource.new("http://localhost:#{port}/commands/monitor",
-                                 timeout: 45)
-    JSON.parse(r.get)
-  rescue Errno::ECONNREFUSED
-    warning 'Connection refused'
-  rescue RestClient::RequestTimeout
-    warning 'Connection timed out'
+    uri = URI.parse("http://localhost:#{port}/commands/monitor")
+    http = Net::HTTP.new(uri.host, uri.port, read_timeout: 45)
+    http.read_timeout = 30
+    request = Net::HTTP::Get.new(uri.request_uri)
+    response = http.request(request)
+    JSON.parse(response.body)
+    rescue Errno::ECONNREFUSED
+      warning 'Connection refused'
+    rescue Timeout::Error
+      warning 'Connection timed out'
   end
 
   def are_you_ok
