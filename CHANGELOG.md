@@ -5,6 +5,8 @@ This CHANGELOG follows the format listed at [Our CHANGELOG Guidelines ](https://
 Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+
+## [1.5.0] - 2017-12-06
 ### Added
 - check-netty-zookeeper-cluster.rb: new script to check if a zookeeper v. 3.5 cluster is OK (@duncaan)
 
@@ -69,7 +71,8 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 ### Added
 - initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-zookeeper/compare/1.3.0...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-zookeeper/compare/1.5.0...HEAD
+[1.5.0]: https://github.com/sensu-plugins/sensu-plugins-zookeeper/compare/1.4.0...1.5.0
 [1.4.0]: https://github.com/sensu-plugins/sensu-plugins-zookeeper/compare/1.3.0...1.4.0
 [1.3.0]: https://github.com/sensu-plugins/sensu-plugins-zookeeper/compare/1.2.0...1.3.0
 [1.2.0]: https://github.com/sensu-plugins/sensu-plugins-zookeeper/compare/1.1.0...1.2.0
