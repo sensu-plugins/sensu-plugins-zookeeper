@@ -30,7 +30,7 @@
 #
 
 require 'sensu-plugin/check/cli'
-require 'rest-client'
+require 'net/http'
 require 'json'
 
 class CheckZookeeperCluster < Sensu::Plugin::Check::CLI
