@@ -16,4 +16,4 @@ mkmf.log
 .DS_Store
 .idea/*
 *.gem
-/vendor/
+vendor/*
