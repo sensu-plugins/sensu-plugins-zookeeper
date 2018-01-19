@@ -49,7 +49,10 @@ class ZookeeperMetrics < Sensu::Plugin::Metric::CLI::Graphite
          default: 2181,
          proc: proc(&:to_i)
 
-  def follow_url(uri_str, agent = "sensu-plugins-zookeeper/#{SensuPluginsZookeeper::Version::VER_STRING}", max_attempts = 10, timeout = 10)
+  def follow_url(uri_str,
+                 agent = "sensu-plugins-zookeeper/#{SensuPluginsZookeeper::Version::VER_STRING}",
+                 max_attempts = 10,
+                 timeout = 10)
     attempts = 0
     cookie = nil
 
@@ -95,6 +98,7 @@ class ZookeeperMetrics < Sensu::Plugin::Metric::CLI::Graphite
 
     response
   end
+  # rubocop:enable Style/CommentedKeyword
 
   def dotted(*args)
     args.join('.')
@@ -119,7 +123,9 @@ class ZookeeperMetrics < Sensu::Plugin::Metric::CLI::Graphite
     timestamp = Time.now.to_i
 
     json = exhibitor_status
-    json.each do |zk|
+
+    # TODO: Need to shortern this function
+    json.each do |zk| # rubocop:disable Metrics/BlockLength
       hostname = zk['hostname']
       response  = zk_command(:mntr, hostname, config[:zk_port])
       metrics   = {}
