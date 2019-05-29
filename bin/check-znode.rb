@@ -51,7 +51,7 @@ class CheckZnode < Sensu::Plugin::Check::CLI
          long: '--check_value REGEX'
 
   option :check_child,
-         description: 'Optionally check for child node against a regex',
+         description: 'Optionally check sub-nodes against a regex',
          short: '-c',
          long: '--check_child REGEX'
   
