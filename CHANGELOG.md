@@ -6,6 +6,10 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
 
+## [2.0.1] - 2019-06-05
+### Added
+- check-znode.rb: added flag of `--check_child|-c` to allow for checking for child node(s) against a regex. (@mattboston)
+
 ## [2.0.0] - 2018-01-18
 ### Security
 - updated rubocop dependency to `~> 0.51.0` per: https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-8418. (@thomasriley)
