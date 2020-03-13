@@ -21,13 +21,13 @@ Gem::Specification.new do |s| # rubocop:disable Metrics/BlockLength
   s.platform               = Gem::Platform::RUBY
   s.post_install_message   = 'You can use the embedded Ruby by setting EMBEDDED_RUBY=true in /etc/default/sensu'
   s.require_paths          = ['lib']
-  s.required_ruby_version  = '>= 2.1.0'
+  s.required_ruby_version  = '>= 2.3.0'
 
   s.summary                = 'Sensu plugins for zookeeper'
   s.test_files             = s.files.grep(%r{^(test|spec|features)/})
   s.version                = SensuPluginsZookeeper::Version::VER_STRING
 
-  s.add_runtime_dependency 'sensu-plugin', '~> 1.2'
+  s.add_runtime_dependency 'sensu-plugin', '~> 4.0'
   s.add_runtime_dependency 'zookeeper',    '1.4.11'
 
   s.add_development_dependency 'bundler',                   '~> 1.7'
