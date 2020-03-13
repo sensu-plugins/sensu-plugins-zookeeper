@@ -67,7 +67,7 @@ class CheckZookeeperREQS < Sensu::Plugin::Check::CLI
       end
 
       result = ready.first.first.read.chomp.split("\n")
-      avg_latency = result[1].split("\t")[1].to_i
+      avg_latency = result.grep(/zk_avg_latency/)[0].split("\t")[1].to_i
 
       ok %(Zookeeper has average latency #{avg_latency}) if avg_latency < config[:avg_latency_critical]
       critical %(Zookeeper's average latency is #{avg_latency}, which is more than #{config[:avg_latency_critical]} threshold)

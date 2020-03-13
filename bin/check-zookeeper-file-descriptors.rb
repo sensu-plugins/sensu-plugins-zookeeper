@@ -70,7 +70,7 @@ class CheckZookeeperREQS < Sensu::Plugin::Check::CLI
       end
 
       result = ready.first.first.read.chomp.split("\n")
-      avg_fd = (result[13].split("\t")[1].to_f / result[14].split("\t")[1].to_f)
+      avg_fd = (result.grep(/zk_open_file_descriptor_count/)[0].split("\t")[1].to_f / result.grep(/zk_max_file_descriptor_count/)[0].split("\t")[1].to_f)
 
       ok %(Zookeeper's open file descriptors rate is #{avg_fd}) if avg_fd < config[:fd_critical]
       critical %(Zookeeper's open file descriptors rate is #{avg_fd}, which is more than #{config[:fd_critical]} threshold)
