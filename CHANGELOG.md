@@ -6,6 +6,23 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
 
+## [3.0.0] - 2020-03-19
+### Breaking Changes
+- Bump `sensu-plugin` dependency to `~> 4.0` you can read the changelog entries for [4.0](https://github.com/sensu-plugins/sensu-plugin/blob/master/CHANGELOG.md#400---2018-02-17), [3.0](https://github.com/sensu-plugins/sensu-plugin/blob/master/CHANGELOG.md#300---2018-12-04), and [2.0](https://github.com/sensu-plugins/sensu-plugin/blob/master/CHANGELOG.md#v200---2017-03-29)
+- Make minimum supported ruby version 2.3.0
+
+### Added
+- Bonsai Asset enablement. Making changes to travis config to enable Bonsai asset building during release deployment
+
+### Changes
+- Update development dependency: bundler ~> 2.1
+- Update development dependency: codeclimate-test-reporter ~> 1.0
+- Update development_dependency: github-markup ~> 3.0
+- Update development_dependency: rake ~> 12.3
+
+### Fixed
+- Updated how zookeeper information is scraped to use string matching instead of positional matching to accomedate newer zookeeper releases adding additional attributes.  
+
 ## [2.0.0] - 2018-01-18
 ### Security
 - updated rubocop dependency to `~> 0.51.0` per: https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-8418. (@thomasriley)
@@ -81,7 +98,8 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 ### Added
 - initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-zookeeper/compare/2.0.0...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-zookeeper/compare/3.0.0...HEAD
+[3.0.0]: https://github.com/sensu-plugins/sensu-plugins-zookeeper/compare/2.0.0...3.0.0
 [2.0.0]: https://github.com/sensu-plugins/sensu-plugins-zookeeper/compare/1.5.0...2.0.0
 [1.5.0]: https://github.com/sensu-plugins/sensu-plugins-zookeeper/compare/1.4.0...1.5.0
 [1.4.0]: https://github.com/sensu-plugins/sensu-plugins-zookeeper/compare/1.3.0...1.4.0

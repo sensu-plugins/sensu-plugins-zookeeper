@@ -4,8 +4,6 @@ cache:
 install:
 - bundle install
 rvm:
-- 2.1
-- 2.2
 - 2.3.0
 - 2.4.1
 notifications:
@@ -18,16 +16,24 @@ script:
 - bundle exec rake default
 - gem build sensu-plugins-zookeeper.gemspec
 - gem install sensu-plugins-zookeeper-*.gem
+before_deploy:
+- bash -c "[ ! -d bonsai/ ] && git clone https://github.com/sensu/sensu-go-bonsai-asset.git bonsai || echo 'bonsai/ exists, skipping git clone'"
+
 deploy:
-  provider: rubygems
+- provider: rubygems
   api_key:
     secure: Mswd19ZpQU0RqJEy2GnyDWTNgd9QCFYuN1q8bqs2U7lHpXARhLI+WDdCCfiyfiMQHxxOyrRLsra12DcREyaOQocQk2rGnlIEfu6GxmRytjyB8MLvowUgWun2D5Rxe4nvXeB5DSReZQMr0K2hm24FmMaUtBSu9N4rnciEn2EgCNM=
   gem: sensu-plugins-zookeeper
   on:
     tags: true
     all_branches: true
-    rvm: 2.1
-    rvm: 2.2
-    rvm: 2.3.0
     rvm: 2.4.1
     repo: sensu-plugins/sensu-plugins-zookeeper
+- provider: script
+  script: bonsai/ruby-runtime/travis-build-ruby-plugin-assets.sh sensu-plugins-zookeeper
+  skip_cleanup: true
+  on:
+    tags: true
+    all_branches: true
+    rvm: 2.4.1
+
