@@ -15,6 +15,7 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 - Bonsai Asset enablement. Making changes to travis config to enable Bonsai asset building during release deployment
 
 ### Changes
+- Update development dependency: bundler ~> 2.1
 - Update development dependency: codeclimate-test-reporter ~> 1.0
 - Update development_dependency: github-markup ~> 3.0
 - Update development_dependency: rake ~> 12.3
