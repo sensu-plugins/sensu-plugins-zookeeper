@@ -44,13 +44,6 @@ class CheckZookeeperCluster < Sensu::Plugin::Check::CLI
          default: 2181,
          proc: proc(&:to_i)
 
-  option :count,
-         description: 'Zookeeper cluster node count',
-         short: '-c count',
-         long: '--count count',
-         default: 3,
-         proc: proc(&:to_i)
-
   option :exhibitor,
          description: 'exhibitor end node for status checks',
          short: '-e Exhibitor status end point',
