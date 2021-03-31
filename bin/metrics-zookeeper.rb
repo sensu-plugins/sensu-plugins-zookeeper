@@ -55,11 +55,8 @@ class ZookeeperMetrics < Sensu::Plugin::Metric::CLI::Graphite
       if ready.nil?
         critical %(Zookeeper did not respond to '#{four_letter_word}' within #{config[:timeout]} seconds)
       end
-
       result = ready.first.first.read.chomp
-
-      ok 'Zookeeper reports no errors' if result == 'imok'
-      critical %(Zookeeper returned a non okay message: '#{result}')
+      return result
     end
 
   end
