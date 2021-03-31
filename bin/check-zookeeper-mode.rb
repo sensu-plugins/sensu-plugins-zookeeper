@@ -54,8 +54,8 @@ class CheckZookeeperMode < Sensu::Plugin::Check::CLI
 
   def zk_command(four_letter_word)
     TCPSocket.tcp(config[:server], config[:port]) do |sock|
-      sock.write @four_letter_word.to_s
-      ready = IO.select([socket], nil, nil, config[:timeout])
+      sock.write four_letter_word.to_s
+      ready = IO.select([sock], nil, nil, config[:timeout])
 
       if ready.nil?
         critical %(Zookeeper did not respond to #{four_letter_word} within #{config[:timeout]} second)

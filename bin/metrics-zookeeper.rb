@@ -48,11 +48,20 @@ class ZookeeperMetrics < Sensu::Plugin::Metric::CLI::Graphite
   end
 
   def zk_command(four_letter_word)
-    Socket.tcp(config[:host], config[:port]) do |sock|
-      sock.print "#{four_letter_word}\r\n"
-      sock.close_write
-      sock.read
+    TCPSocket.open(config[:server], config[:port]) do |socket|
+      socket.write four_letter_word.to_s
+      ready = IO.select([socket], nil, nil, config[:timeout])
+
+      if ready.nil?
+        critical %(Zookeeper did not respond to '#{four_letter_word}' within #{config[:timeout]} seconds)
+      end
+
+      result = ready.first.first.read.chomp
+
+      ok 'Zookeeper reports no errors' if result == 'imok'
+      critical %(Zookeeper returned a non okay message: '#{result}')
     end
+
   end
 
   def run
