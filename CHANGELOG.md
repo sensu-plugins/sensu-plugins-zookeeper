@@ -6,8 +6,13 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
 
+## [3.1.0] - 2021-03-31
+
 ### Changes
 - Use TCPSocket logic with timeout for check-zookeeper-mode.rb and metricz-zookepper.rb  
+
+### Fixed
+- Remove deplicate count option in check-zookeeper-cluster.rb
 
 ## [3.0.0] - 2020-03-19
 ### Breaking Changes
@@ -101,7 +106,8 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 ### Added
 - initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-zookeeper/compare/3.0.0...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-zookeeper/compare/3.1.0...HEAD
+[3.1.0]: https://github.com/sensu-plugins/sensu-plugins-zookeeper/compare/3.0.0...3.1.0
 [3.0.0]: https://github.com/sensu-plugins/sensu-plugins-zookeeper/compare/2.0.0...3.0.0
 [2.0.0]: https://github.com/sensu-plugins/sensu-plugins-zookeeper/compare/1.5.0...2.0.0
 [1.5.0]: https://github.com/sensu-plugins/sensu-plugins-zookeeper/compare/1.4.0...1.5.0
