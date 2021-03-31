@@ -65,7 +65,6 @@ class ZookeeperMetrics < Sensu::Plugin::Metric::CLI::Graphite
       result = ready.first.first.read.chomp
       return result
     end
-
   end
 
   def run

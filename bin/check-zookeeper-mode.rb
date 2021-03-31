@@ -52,7 +52,6 @@ class CheckZookeeperMode < Sensu::Plugin::Check::CLI
          long: '--mode MODE',
          required: true
 
-
   def zk_command(four_letter_word)
     TCPSocket.open(config[:server], config[:port]) do |socket|
       socket.write four_letter_word.to_s
@@ -64,7 +63,6 @@ class CheckZookeeperMode < Sensu::Plugin::Check::CLI
 
       result = ready.first.first.read.chomp
       return result
-
     end
   end
 
