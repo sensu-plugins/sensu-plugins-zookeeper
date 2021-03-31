@@ -38,6 +38,13 @@ class ZookeeperMetrics < Sensu::Plugin::Metric::CLI::Graphite
          proc: proc(&:to_i),
          default: 2181
 
+  option :timeout,
+         description: 'How long to wait for a reply in seconds.',
+         short: '-t SECS',
+         long: '--timeout SECS',
+         proc: proc(&:to_i),
+         default: 5
+
   option :scheme,
          description: 'Metric naming scheme, text to prepend to metrics',
          long: '--scheme SCHEME',
