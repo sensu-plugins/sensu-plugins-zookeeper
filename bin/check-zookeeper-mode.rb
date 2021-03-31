@@ -53,10 +53,16 @@ class CheckZookeeperMode < Sensu::Plugin::Check::CLI
          required: true
 
   def zk_command(four_letter_word)
-    Socket.tcp(config[:server], config[:port]) do |sock|
-      sock.print "#{four_letter_word}\r\n"
-      sock.close_write
-      sock.read
+    TCPSocket.tcp(config[:server], config[:port]) do |sock|
+      sock.write @four_letter_word.to_s
+      ready = IO.select([socket], nil, nil, config[:timeout])
+
+      if ready.nil?
+        critical %(Zookeeper did not respond to #{four_letter_word} within #{config[:timeout]} second)
+      end
+
+      result = ready.first.first.read.chomp
+      return result
     end
   end
 
