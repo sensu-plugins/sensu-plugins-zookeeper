@@ -10,6 +10,7 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ### Changes
 - Use TCPSocket logic with timeout for check-zookeeper-mode.rb and metricz-zookepper.rb  
+- Update development_dependency: yard >= 0.9.20
 
 ### Fixed
 - Remove deplicate count option in check-zookeeper-cluster.rb
