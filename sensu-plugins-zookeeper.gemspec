@@ -28,7 +28,7 @@ Gem::Specification.new do |s| # rubocop:disable Metrics/BlockLength
   s.version                = SensuPluginsZookeeper::Version::VER_STRING
 
   s.add_runtime_dependency 'sensu-plugin', '~> 4.0'
-  s.add_runtime_dependency 'zookeeper',    '1.4.11'
+  s.add_runtime_dependency 'zookeeper',    '~> 1.4'
 
   s.add_development_dependency 'bundler',                   '~> 2.1'
   s.add_development_dependency 'codeclimate-test-reporter', '~> 1.0'

@@ -6,6 +6,9 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
 
+### Fixed
+- `sensu-plugins-zookeeper.gemspec`: Relax zookeeper requirement from 1.4.11 to ~> 1.4 to incorporate an [installation bug](https://github.com/zk-ruby/zookeeper/issues/85) [fix](https://github.com/zk-ruby/zookeeper/pull/97) (@jonathanschlue-as)
+
 ## [3.1.0] - 2021-03-31
 
 ### Changes
